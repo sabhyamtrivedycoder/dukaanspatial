@@ -4,75 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3D Creator Studio | DukaanSpatial</title>
-  <meta name="description" content="Full-featured browser 3D product studio. Customize lighting, materials, camera presets, and copy your 1-line e-commerce embed code.">
+  <meta name="description" content="Configure 3D materials, camera angles, lighting environments, and generate responsive store embeds for Indian e-commerce.">
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
   <style>
-    .studio-grid {
+    .studio-layout {
       display: grid;
       grid-template-columns: 1.35fr 0.65fr;
       gap: 2rem;
       margin-top: 2rem;
     }
-    .studio-viewport-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-active);
-      border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      box-shadow: var(--shadow-card);
-    }
-    .studio-canvas-box {
-      width: 100%;
-      height: 440px;
-      background: radial-gradient(circle at 50% 50%, #151d38 0%, #070a14 100%);
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(139, 92, 246, 0.25);
-      position: relative;
-      cursor: grab;
-      overflow: hidden;
-    }
-    .studio-canvas-box:active {
-      cursor: grabbing;
-    }
-    .tool-panel-card {
+    .studio-box {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-viewport);
     }
-    .tool-panel-card h4 {
+    .studio-viewer-container {
+      width: 100%;
+      height: 480px;
+      background: radial-gradient(circle at 50% 50%, #1c2236 0%, #0d0f17 100%);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+    }
+    .control-card {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .control-card h4 {
       font-family: var(--font-heading);
-      font-size: 1.15rem;
-      margin-bottom: 1rem;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .lighting-btn-group, .camera-btn-group {
+    .btn-grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
-    .sub-btn {
-      background: var(--bg-card);
+    .grid-action-btn {
+      background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      padding: 0.6rem 0.85rem;
       color: var(--text-secondary);
-      font-size: 0.8125rem;
+      font-size: 0.75rem;
       font-weight: 500;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
       cursor: pointer;
-      transition: all 0.2s ease;
       text-align: center;
+      transition: all 0.15s ease;
     }
-    .sub-btn:hover, .sub-btn.active {
-      border-color: var(--accent-cyan);
-      background: var(--bg-surface-hover);
-      color: var(--text-main);
+    .grid-action-btn:hover, .grid-action-btn.active {
+      color: #ffffff;
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.08);
     }
     @media (max-width: 992px) {
-      .studio-grid {
+      .studio-layout {
         grid-template-columns: 1fr;
       }
     }
@@ -80,167 +77,166 @@
 </head>
 <body>
 
-  <!-- Main Navigation -->
+  <!-- Site Header -->
   <header class="site-header">
     <div class="container nav-wrap">
       <a href="index.html" class="brand-logo">
-        <div class="brand-icon-box">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2">
+        <div class="brand-logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
           </svg>
         </div>
-        <div class="brand-name">Dukaan<span>Spatial</span></div>
-        <span class="brand-badge">Studio</span>
+        <div class="brand-name">DukaanSpatial</div>
+        <span class="brand-tag">Studio</span>
       </a>
 
-      <nav class="main-nav" id="main-nav">
-        <a href="index.html" class="nav-link">Home</a>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Overview</a>
         <a href="studio.html" class="nav-link active">3D Studio</a>
         <a href="showcase.html" class="nav-link">Showcase</a>
         <a href="pricing.html" class="nav-link">Pricing</a>
-        <a href="about.html" class="nav-link">Founder Story</a>
+        <a href="about.html" class="nav-link">About</a>
       </nav>
 
       <div class="nav-actions">
-        <button class="btn btn-primary btn-sm" onclick="exportStoreEmbed()">
-          <span>Export Store Embed</span>
+        <button class="btn btn-primary btn-sm" onclick="copyStudioEmbed()">
+          <span>Copy Embed Code</span>
         </button>
       </div>
     </div>
   </header>
 
-  <div class="container" style="padding: 3rem 1.5rem 5rem;">
+  <div class="container" style="padding: 2.5rem 1.5rem 5rem;">
     
-    <!-- Page Header -->
-    <div style="border-bottom: 1px solid var(--border-subtle); padding-bottom: 1.75rem;">
-      <span class="status-pill" style="margin-bottom: 0.75rem;">
-        <span class="pulse-dot"></span>
+    <!-- Header -->
+    <div style="border-bottom: 1px solid var(--border-subtle); padding-bottom: 1.5rem;">
+      <div class="hero-pill" style="margin-bottom: 0.5rem;">
+        <span class="hero-pill-dot"></span>
         Spatial Studio Environment
-      </span>
-      <h1 style="font-family: var(--font-heading); font-size: 2.35rem; margin-top: 0.35rem;">
-        Interactive 3D Product Workbench
+      </div>
+      <h1 style="font-family: var(--font-heading); font-size: 2.25rem; font-weight: 800; letter-spacing: -0.02em;">
+        3D Product Creator Studio
       </h1>
-      <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-top: 0.35rem;">
-        Inspect materials, toggle dynamic environmental lighting, set camera angles, and generate responsive web embeds for Indian storefronts.
+      <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-top: 0.25rem;">
+        Calibrate lighting, camera angles, and inspect physical PBR textures. Export responsive WebGL embeds with one click.
       </p>
     </div>
 
-    <!-- Main Studio Grid -->
-    <div class="studio-grid">
+    <!-- Main Studio Layout -->
+    <div class="studio-layout">
       
-      <!-- Left Column: 3D Viewport Workstation -->
-      <div class="studio-viewport-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+      <!-- Left Column: Big Viewport -->
+      <div class="studio-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
           <div>
-            <h3 style="font-family: var(--font-heading); font-size: 1.25rem;" id="studio-prod-title">
-              Kinetic Pro Runner (3D Mesh)
+            <h3 style="font-family: var(--font-heading); font-size: 1.15rem;" id="studio-title">
+              Kinetic Pro Runner (Official PBR)
             </h3>
-            <p style="font-size: 0.8125rem; color: var(--text-muted); font-family: var(--font-mono);">
-              Status: 12,450 Polygons &bull; 60 FPS WebGL Pipeline &bull; Active Orbit Control
+            <p style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">
+              Source: 7.8 MB Khronos GLB &bull; 60 FPS Orbit Control &bull; Full PBR Materials
             </p>
           </div>
 
-          <!-- Product Switcher -->
-          <div class="product-selector-pill">
-            <button class="prod-tab-btn active" data-prod="sneaker">Sneaker</button>
-            <button class="prod-tab-btn" data-prod="watch">Watch</button>
-            <button class="prod-tab-btn" data-prod="headphones">Audio</button>
+          <!-- Model Switcher -->
+          <div class="model-tabs">
+            <button class="model-tab-btn active" onclick="loadStudioModel('shoe', 'Kinetic Pro Runner (Official PBR)')">Sneaker</button>
+            <button class="model-tab-btn" onclick="loadStudioModel('lipstick', 'Velvet Ruby Lipstick (3D)')">Lipstick</button>
+            <button class="model-tab-btn" onclick="loadStudioModel('camera', 'Vintage Brass Camera (3D)')">Camera</button>
+            <button class="model-tab-btn" onclick="loadStudioModel('chair', 'Designer Velvet Chair (3D)')">Chair</button>
+            <button class="model-tab-btn" onclick="loadStudioModel('bottle', 'Cosmetic Glass Bottle (3D)')">Bottle</button>
           </div>
         </div>
 
-        <!-- 3D Canvas Box -->
-        <div class="studio-canvas-box" id="canvas-box-3d">
-          <canvas id="webgl-canvas"></canvas>
-          <div class="drag-hint-badge">Left Click + Drag: 360 Orbit &bull; Scroll: Zoom</div>
+        <!-- Big Model-Viewer Canvas -->
+        <div class="studio-viewer-container">
+          <model-viewer 
+            id="studio-viewer"
+            src="assets/shoe.glb" 
+            alt="Product 3D Model" 
+            camera-controls 
+            auto-rotate 
+            shadow-intensity="1.5" 
+            shadow-softness="0.75"
+            exposure="1.0"
+            environment-image="neutral"
+            camera-orbit="45deg 75deg 2m"
+            ar
+            ar-modes="webxr scene-viewer quick-look">
+          </model-viewer>
+          <div class="orbit-guide">Left Click + Drag: 360 Rotation &bull; Right Click / Two-finger: Pan &bull; Scroll: Zoom</div>
         </div>
 
-        <!-- Material and Color Customizer Bar -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle); flex-wrap: wrap; gap: 1rem;">
-          <div class="color-swatches-group">
-            <span class="swatch-label">Body Finish:</span>
-            <div class="color-dot dot-cyan active" data-color="#22d3ee" title="Electric Cyan"></div>
-            <div class="color-dot dot-purple" data-color="#8b5cf6" title="Neon Violet"></div>
-            <div class="color-dot dot-black" data-color="#1e293b" title="Midnight Slate"></div>
-            <div class="color-dot dot-amber" data-color="#f59e0b" title="Sunset Amber"></div>
-            <div class="color-dot dot-white" data-color="#f8fafc" title="Pure White"></div>
+        <!-- Toolbar Below -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle); flex-wrap: wrap; gap: 0.75rem;">
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <button class="btn btn-secondary btn-sm" onclick="toggleAutoRotate()">Toggle Auto-Spin</button>
+            <button class="btn btn-secondary btn-sm" onclick="resetStudioCamera()">Reset Camera</button>
+            <button class="btn btn-secondary btn-sm" onclick="openARModal()">View AR On Phone</button>
           </div>
 
-          <div style="display: flex; gap: 0.75rem;">
-            <button class="btn btn-secondary btn-sm" onclick="triggerARModal()">
-              <span>View AR On Phone</span>
-            </button>
-            <button class="btn btn-primary btn-sm" id="copy-embed-btn">
-              <span>Copy Embed Code</span>
-            </button>
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-emerald);">
+            ● WebGL Pipeline: 60.0 FPS Stable
           </div>
         </div>
 
-        <!-- 1-Line Embed Code Snippet -->
-        <div class="embed-code-wrap" style="margin-top: 1.25rem;">
-          <span class="embed-code-text" id="embed-snippet-text">
-            &lt;iframe src="https://dukaanspatial.in/view/sneaker?color=22d3ee" width="100%" height="450"&gt;&lt;/iframe&gt;
+        <!-- Embed Code Snippet -->
+        <div class="embed-pill-bar" style="margin-top: 1rem;">
+          <span class="embed-pill-code" id="studio-embed-text">
+            &lt;iframe src="https://dukaanspatial.in/embed/shoe" width="100%" height="450" frameborder="0"&gt;&lt;/iframe&gt;
           </span>
-          <span style="font-size: 0.75rem; color: var(--accent-cyan); font-family: var(--font-mono);">
-            Shopify / Dukaan Ready
-          </span>
+          <button class="btn btn-primary btn-sm" onclick="copyStudioEmbed()" id="studio-copy-btn" style="padding: 0.3rem 0.7rem; font-size: 0.75rem;">
+            Copy Embed Code
+          </button>
         </div>
       </div>
 
-      <!-- Right Column: Studio Controls & AR Modal -->
+      <!-- Right Column: Control Panels -->
       <div>
         
-        <!-- Environment Lighting Panel -->
-        <div class="tool-panel-card">
-          <h4>Studio Lighting Environment</h4>
-          <div class="lighting-btn-group">
-            <button class="sub-btn active" onclick="setStudioLighting('studio')">Commercial Studio</button>
-            <button class="sub-btn" onclick="setStudioLighting('cyber')">Cyberpunk Neon</button>
-            <button class="sub-btn" onclick="setStudioLighting('sunset')">Warm Sunset</button>
-            <button class="sub-btn" onclick="setStudioLighting('soft')">Soft Daylight</button>
-          </div>
-        </div>
-
         <!-- Camera Angle Presets -->
-        <div class="tool-panel-card">
-          <h4>Camera Perspective Presets</h4>
-          <div class="camera-btn-group">
-            <button class="sub-btn active" onclick="setCameraAngle('front')">Front Angle (0 deg)</button>
-            <button class="sub-btn" onclick="setCameraAngle('iso')">Isometric 3D</button>
-            <button class="sub-btn" onclick="setCameraAngle('side')">Side Profile</button>
-            <button class="sub-btn" onclick="setCameraAngle('top')">Top View</button>
+        <div class="control-card">
+          <h4>Camera Perspectives</h4>
+          <div class="btn-grid-2">
+            <button class="grid-action-btn active" onclick="setAngle('0deg 75deg 2m')">Front View (0 deg)</button>
+            <button class="grid-action-btn" onclick="setAngle('45deg 65deg 2.2m')">Isometric 3D</button>
+            <button class="grid-action-btn" onclick="setAngle('90deg 75deg 2m')">Side Profile</button>
+            <button class="grid-action-btn" onclick="setAngle('0deg 15deg 2.5m')">Top Down</button>
           </div>
         </div>
 
-        <!-- Feature Annotation Callout Hotspots -->
-        <div class="tool-panel-card">
-          <h4>Feature Annotation Pins</h4>
-          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.8125rem;">
-            <div style="padding: 0.6rem 0.85rem; background: var(--bg-card); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); display: flex; justify-content: space-between;">
-              <span>Pin 1: Nitrogen Cushion Sole</span>
-              <strong style="color: var(--accent-cyan);">Active</strong>
-            </div>
-            <div style="padding: 0.6rem 0.85rem; background: var(--bg-card); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); display: flex; justify-content: space-between;">
-              <span>Pin 2: Breathable Engineered Mesh</span>
-              <strong style="color: var(--accent-cyan);">Active</strong>
-            </div>
-            <div style="padding: 0.6rem 0.85rem; background: var(--bg-card); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); display: flex; justify-content: space-between;">
-              <span>Pin 3: Dynamic Arch Grip</span>
-              <strong style="color: var(--accent-cyan);">Active</strong>
-            </div>
+        <!-- Studio Lighting Environment -->
+        <div class="control-card">
+          <h4>Studio Environment Lighting</h4>
+          <div class="btn-grid-2">
+            <button class="grid-action-btn active" onclick="setLighting('neutral', 1.0)">Clean Studio</button>
+            <button class="grid-action-btn" onclick="setLighting('legacy', 1.3)">High-Contrast Day</button>
+            <button class="grid-action-btn" onclick="setLighting('neutral', 0.65)">Moody Editorial</button>
+            <button class="grid-action-btn" onclick="setLighting('legacy', 1.8)">Vibrant Commercial</button>
+          </div>
+        </div>
+
+        <!-- Material Variant Selector (for Shoe) -->
+        <div class="control-card" id="studio-variant-card">
+          <h4>Material & Finish Presets</h4>
+          <div class="btn-grid-2">
+            <button class="grid-action-btn active" onclick="setVariant('midnight')">Midnight Black</button>
+            <button class="grid-action-btn" onclick="setVariant('beach')">Street White</button>
+            <button class="grid-action-btn" onclick="setVariant('street')">Sport Edition</button>
+            <button class="grid-action-btn" onclick="setVariant('default')">Original Spec</button>
           </div>
         </div>
 
         <!-- E-Commerce Integration Quick Links -->
-        <div class="tool-panel-card" style="margin-bottom: 0;">
+        <div class="control-card" style="margin-bottom: 0;">
           <h4>1-Click Store Integrations</h4>
-          <p style="font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: 0.85rem;">
-            DukaanSpatial embeds natively into Indian commerce tools:
+          <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.85rem;">
+            Ready to embed directly on Indian shopping platforms:
           </p>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <span class="status-pill" style="font-size: 0.75rem;">Shopify App</span>
-            <span class="status-pill" style="font-size: 0.75rem;">Dukaan Store</span>
-            <span class="status-pill" style="font-size: 0.75rem;">WooCommerce</span>
-            <span class="status-pill" style="font-size: 0.75rem;">Custom HTML</span>
+            <span class="brand-tag" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">Shopify</span>
+            <span class="brand-tag" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">Dukaan.io</span>
+            <span class="brand-tag" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">WooCommerce</span>
+            <span class="brand-tag" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">Custom HTML</span>
           </div>
         </div>
 
@@ -250,28 +246,27 @@
 
   </div>
 
-  <!-- AR Room Placement Modal Simulation -->
+  <!-- AR Modal -->
   <div id="ar-modal" style="display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); align-items: center; justify-content: center;">
-    <div style="background: var(--bg-card); border: 1px solid var(--border-active); border-radius: var(--radius-lg); padding: 2.5rem; max-width: 440px; text-align: center; position: relative;">
-      <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.5rem;">View in Your Room (AR)</h3>
-      <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1.5rem;">
-        Scan this QR code with your smartphone camera to place this 3D product on your table or floor in Augmented Reality:
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 2.25rem; max-width: 400px; text-align: center;">
+      <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 0.5rem;">View in Your Room (AR)</h3>
+      <p style="color: var(--text-secondary); font-size: 0.8125rem; margin-bottom: 1.5rem;">
+        Scan this QR code with your smartphone camera to launch instant Augmented Reality on your floor or table:
       </p>
 
-      <!-- Simulated QR Code SVG -->
-      <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); display: inline-block; margin-bottom: 1.5rem;">
-        <svg width="180" height="180" viewBox="0 0 100 100" fill="#0b0f1d">
-          <rect x="10" y="10" width="25" height="25" fill="#0b0f1d"/>
+      <div style="background: #ffffff; padding: 1rem; border-radius: var(--radius-md); display: inline-block; margin-bottom: 1.25rem;">
+        <svg width="160" height="160" viewBox="0 0 100 100" fill="#090a0f">
+          <rect x="10" y="10" width="25" height="25"/>
           <rect x="15" y="15" width="15" height="15" fill="#fff"/>
-          <rect x="18" y="18" width="9" height="9" fill="#0b0f1d"/>
+          <rect x="18" y="18" width="9" height="9"/>
           
-          <rect x="65" y="10" width="25" height="25" fill="#0b0f1d"/>
+          <rect x="65" y="10" width="25" height="25"/>
           <rect x="70" y="15" width="15" height="15" fill="#fff"/>
-          <rect x="73" y="18" width="9" height="9" fill="#0b0f1d"/>
+          <rect x="73" y="18" width="9" height="9"/>
 
-          <rect x="10" y="65" width="25" height="25" fill="#0b0f1d"/>
+          <rect x="10" y="65" width="25" height="25"/>
           <rect x="15" y="70" width="15" height="15" fill="#fff"/>
-          <rect x="18" y="73" width="9" height="9" fill="#0b0f1d"/>
+          <rect x="18" y="73" width="9" height="9"/>
 
           <rect x="42" y="20" width="15" height="8"/>
           <rect x="45" y="45" width="20" height="20"/>
@@ -280,8 +275,8 @@
         </svg>
       </div>
 
-      <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-cyan); margin-bottom: 1.5rem;">
-        Supports iOS QuickLook & Android SceneViewer (WebXR Native)
+      <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+        WebXR Native &bull; iOS QuickLook &bull; Android SceneViewer
       </div>
 
       <button class="btn btn-secondary" onclick="closeARModal()" style="width: 100%;">
@@ -292,42 +287,73 @@
 
   <!-- Site Footer -->
   <footer class="site-footer">
-    <div class="container footer-bottom">
-      <div>DukaanSpatial Creator Studio. Built with WebGL, Three.js & WebXR.</div>
-      <div>Designed for Indian merchants and D2C brands.</div>
+    <div class="container footer-copy">
+      <div>DukaanSpatial 3D Studio. Powered by Google ModelViewer WebGL & WebXR.</div>
+      <div>Designed for Indian merchants, D2C startups, and retail brands.</div>
     </div>
   </footer>
 
-  <script src="js/app.js"></script>
   <script>
-    function triggerARModal() {
+    const studioViewer = document.getElementById('studio-viewer');
+    const studioTitle = document.getElementById('studio-title');
+    const studioEmbedText = document.getElementById('studio-embed-text');
+    const variantCard = document.getElementById('studio-variant-card');
+
+    function loadStudioModel(type, title) {
+      document.querySelectorAll('.model-tab-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = (typeof event !== 'undefined' && event && event.target) ? event.target : document.querySelector(`.model-tab-btn[onclick*="${type}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      studioTitle.textContent = title;
+      studioViewer.src = `assets/${type}.glb`;
+      studioEmbedText.textContent = `<iframe src="https://dukaanspatial.in/embed/${type}" width="100%" height="450" frameborder="0"></iframe>`;
+
+      if (type === 'shoe') {
+        variantCard.style.display = 'block';
+      } else {
+        variantCard.style.display = 'none';
+      }
+    }
+
+    function setAngle(orbit) {
+      document.querySelectorAll('.btn-grid-2 .grid-action-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      studioViewer.cameraOrbit = orbit;
+    }
+
+    function setLighting(env, exposure) {
+      studioViewer.environmentImage = env;
+      studioViewer.exposure = exposure;
+    }
+
+    function setVariant(name) {
+      if (studioViewer && studioViewer.variantNames && studioViewer.variantNames.length > 0) {
+        studioViewer.variantName = name;
+      }
+    }
+
+    function toggleAutoRotate() {
+      studioViewer.autoRotate = !studioViewer.autoRotate;
+    }
+
+    function resetStudioCamera() {
+      studioViewer.cameraOrbit = '45deg 75deg 2m';
+      studioViewer.resetTurntableRotation();
+    }
+
+    function copyStudioEmbed() {
+      const btn = document.getElementById('studio-copy-btn');
+      navigator.clipboard.writeText(studioEmbedText.textContent.trim()).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy Embed Code'; }, 1800);
+      });
+    }
+
+    function openARModal() {
       document.getElementById('ar-modal').style.display = 'flex';
     }
     function closeARModal() {
       document.getElementById('ar-modal').style.display = 'none';
-    }
-    function setStudioLighting(type) {
-      document.querySelectorAll('.lighting-btn-group .sub-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
-      if (typeof scene !== 'undefined') {
-        const hex = type === 'cyber' ? 0xa855f7 : (type === 'sunset' ? 0xf59e0b : 0x22d3ee);
-        scene.children.forEach(c => {
-          if (c.isDirectionalLight) c.color.setHex(hex);
-        });
-      }
-    }
-    function setCameraAngle(type) {
-      document.querySelectorAll('.camera-btn-group .sub-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
-      if (currentMeshGroup) {
-        if (type === 'front') { currentMeshGroup.rotation.set(0, 0, 0); }
-        else if (type === 'iso') { currentMeshGroup.rotation.set(0.4, 0.6, 0); }
-        else if (type === 'side') { currentMeshGroup.rotation.set(0, Math.PI / 2, 0); }
-        else if (type === 'top') { currentMeshGroup.rotation.set(Math.PI / 2, 0, 0); }
-      }
-    }
-    function exportStoreEmbed() {
-      alert('1-Line Embed Code copied to clipboard! Paste directly into your Shopify or Dukaan store theme.');
     }
   </script>
 </body>

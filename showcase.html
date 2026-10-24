@@ -4,57 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live 3D Showcase | DukaanSpatial</title>
-  <meta name="description" content="Explore live 3D product showcases built for Indian footwear, jewelry, electronics, and fashion brands.">
+  <meta name="description" content="Explore live photorealistic 3D product viewports built for Indian retail, footwear, cosmetics, and electronics.">
   <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
   <style>
-    .gallery-grid {
+    .showcase-grid-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-top: 2.5rem;
     }
-    .gallery-card {
-      background: var(--bg-card);
+    .model-card-box {
+      background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      transition: all 0.3s ease;
-      position: relative;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-subtle);
+      transition: all 0.2s ease;
     }
-    .gallery-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--border-active);
-      box-shadow: var(--shadow-card), 0 0 25px rgba(34, 211, 238, 0.15);
+    .model-card-box:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
     }
-    .gallery-preview-box {
+    .card-viewer-wrap {
       width: 100%;
-      height: 200px;
-      background: radial-gradient(circle at 50% 50%, #17223e 0%, #090d18 100%);
+      height: 240px;
+      background: radial-gradient(circle at 50% 50%, #171a26 0%, #0a0b10 100%);
       border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 1px solid var(--border-subtle);
       margin-bottom: 1.25rem;
-      border: 1px solid rgba(139, 92, 246, 0.2);
       position: relative;
+      overflow: hidden;
     }
-    .category-badge {
+    .card-tag {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--accent-cyan);
-      background: rgba(34, 211, 238, 0.1);
-      padding: 0.2rem 0.55rem;
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      padding: 0.15rem 0.5rem;
       border-radius: var(--radius-full);
       display: inline-block;
       margin-bottom: 0.5rem;
+      text-transform: uppercase;
     }
     @media (max-width: 992px) {
-      .gallery-grid {
+      .showcase-grid-cards {
         grid-template-columns: repeat(2, 1fr);
       }
     }
     @media (max-width: 600px) {
-      .gallery-grid {
+      .showcase-grid-cards {
         grid-template-columns: 1fr;
       }
     }
@@ -62,29 +62,29 @@
 </head>
 <body>
 
-  <!-- Main Navigation -->
+  <!-- Site Header -->
   <header class="site-header">
     <div class="container nav-wrap">
       <a href="index.html" class="brand-logo">
-        <div class="brand-icon-box">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2">
+        <div class="brand-logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
           </svg>
         </div>
-        <div class="brand-name">Dukaan<span>Spatial</span></div>
-        <span class="brand-badge">Showcase</span>
+        <div class="brand-name">DukaanSpatial</div>
+        <span class="brand-tag">Gallery</span>
       </a>
 
-      <nav class="main-nav" id="main-nav">
-        <a href="index.html" class="nav-link">Home</a>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Overview</a>
         <a href="studio.html" class="nav-link">3D Studio</a>
         <a href="showcase.html" class="nav-link active">Showcase</a>
         <a href="pricing.html" class="nav-link">Pricing</a>
-        <a href="about.html" class="nav-link">Founder Story</a>
+        <a href="about.html" class="nav-link">About</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="studio.html" class="btn btn-primary btn-sm">Launch 3D Studio</a>
+        <a href="studio.html" class="btn btn-primary btn-sm">Open 3D Studio</a>
       </div>
     </div>
   </header>
@@ -92,140 +92,170 @@
   <div class="container" style="padding: 3rem 1.5rem 5rem;">
     
     <!-- Page Header -->
-    <div style="border-bottom: 1px solid var(--border-subtle); padding-bottom: 2rem;">
-      <span class="status-pill" style="margin-bottom: 0.75rem;">
-        <span class="pulse-dot"></span>
-        Bharat Retail Spatial Gallery
-      </span>
-      <h1 style="font-family: var(--font-heading); font-size: 2.35rem; margin-top: 0.35rem;">
-        Interactive 3D Product Gallery
+    <div style="border-bottom: 1px solid var(--border-subtle); padding-bottom: 1.75rem;">
+      <div class="hero-pill" style="margin-bottom: 0.5rem;">
+        <span class="hero-pill-dot"></span>
+        Live PBR Catalog
+      </div>
+      <h1 style="font-family: var(--font-heading); font-size: 2.35rem; font-weight: 800; letter-spacing: -0.02em;">
+        Live 3D Product Showcase
       </h1>
-      <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-top: 0.35rem;">
-        Explore live WebGL 3D models configured for top Indian e-commerce sectors. Each model embeds with a single line of code.
+      <p style="color: var(--text-secondary); font-size: 0.9375rem; margin-top: 0.25rem;">
+        Every card below features a live, interactive 3D WebGL model. Click and drag on any card to rotate in 360 degrees.
       </p>
     </div>
 
     <!-- Gallery Grid -->
-    <div class="gallery-grid">
+    <div class="showcase-grid-cards">
       
-      <!-- Card 1 -->
-      <div class="gallery-card">
-        <div class="gallery-preview-box">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.5">
-            <path d="M4 17l6-6 4 4 6-6"></path>
-            <path d="M2 19h20"></path>
-          </svg>
-          <span class="drag-hint-badge">360 View Ready</span>
+      <!-- Card 1: Sneaker -->
+      <div class="model-card-box">
+        <div class="card-viewer-wrap">
+          <model-viewer 
+            src="assets/shoe.glb" 
+            alt="3D Athletic Sneaker" 
+            camera-controls 
+            auto-rotate 
+            shadow-intensity="1.5"
+            exposure="1.0"
+            environment-image="neutral">
+          </model-viewer>
+          <div class="orbit-guide" style="font-size: 0.6rem; padding: 0.2rem 0.5rem;">Drag to Orbit</div>
         </div>
-        <span class="category-badge">Footwear & Athletics</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.35rem;">Kinetic Pro 3D Sneaker</h3>
-        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
-          Includes dynamic nitrogen sole cushioning callouts, customizable upper knit textures, and live weight inspection.
+        <span class="card-tag">Footwear & D2C</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.25rem;">Pro Kinetic Runner</h3>
+        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;">
+          Real Khronos PBR materials, nitrogen foam sole cushioning, and multi-colorway support.
         </p>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.85rem;">
-          <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-emerald);">+44% Conversion Lift</span>
-          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Open 3D Model</a>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; font-size: 0.75rem;">
+          <span style="color: var(--accent-emerald); font-family: var(--font-mono);">+44% Conversion Lift</span>
+          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Inspect in Studio</a>
         </div>
       </div>
 
-      <!-- Card 2 -->
-      <div class="gallery-card">
-        <div class="gallery-preview-box">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.5">
-            <circle cx="12" cy="12" r="7"></circle>
-            <polyline points="12 9 12 12 13.5 13.5"></polyline>
-            <path d="M12 2v3M12 19v3"></path>
-          </svg>
-          <span class="drag-hint-badge">360 View Ready</span>
+      <!-- Card 2: Luxury Lipstick -->
+      <div class="model-card-box">
+        <div class="card-viewer-wrap">
+          <model-viewer 
+            src="assets/lipstick.glb" 
+            alt="3D Luxury Lipstick" 
+            camera-controls 
+            auto-rotate 
+            shadow-intensity="1.5"
+            exposure="1.1"
+            environment-image="neutral"
+            camera-orbit="0deg 75deg 2m">
+          </model-viewer>
+          <div class="orbit-guide" style="font-size: 0.6rem; padding: 0.2rem 0.5rem;">Drag to Orbit</div>
         </div>
-        <span class="category-badge">Luxury & Timepieces</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.35rem;">Chronograph Automatic Watch</h3>
-        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
-          Titanium bezel with sapphire crystal reflections and interchangeable leather/steel straps.
+        <span class="card-tag">Cosmetics & Beauty</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.25rem;">Velvet Ruby Lipstick</h3>
+        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;">
+          Polished 24K gold metallic tube with slanted crimson velvet matte cosmetic bullet.
         </p>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.85rem;">
-          <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-emerald);">+52% Time On Page</span>
-          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Open 3D Model</a>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; font-size: 0.75rem;">
+          <span style="color: var(--accent-emerald); font-family: var(--font-mono);">+52% Time On Store</span>
+          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Inspect in Studio</a>
         </div>
       </div>
 
-      <!-- Card 3 -->
-      <div class="gallery-card">
-        <div class="gallery-preview-box">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.5">
-            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-          </svg>
-          <span class="drag-hint-badge">360 View Ready</span>
+      <!-- Card 3: Vintage Camera -->
+      <div class="model-card-box">
+        <div class="card-viewer-wrap">
+          <model-viewer 
+            src="assets/camera.glb" 
+            alt="3D Vintage Optical Camera" 
+            camera-controls 
+            auto-rotate 
+            shadow-intensity="1.5"
+            exposure="1.0"
+            environment-image="neutral">
+          </model-viewer>
+          <div class="orbit-guide" style="font-size: 0.6rem; padding: 0.2rem 0.5rem;">Drag to Orbit</div>
         </div>
-        <span class="category-badge">Consumer Electronics</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.35rem;">Acoustic ANC Headphones</h3>
-        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
-          Exploded component view displaying memory-foam ear cushions, 40mm drivers, and active noise canceling microphones.
+        <span class="card-tag">Electronics & Hardware</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.25rem;">Vintage Optical Rangefinder</h3>
+        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;">
+          20MB high-polygon PBR model with textured leather body, mechanical brass dials, and coated lens.
         </p>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.85rem;">
-          <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-emerald);">-38% Product Returns</span>
-          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Open 3D Model</a>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; font-size: 0.75rem;">
+          <span style="color: var(--accent-emerald); font-family: var(--font-mono);">-38% Product Returns</span>
+          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Inspect in Studio</a>
         </div>
       </div>
 
-      <!-- Card 4 -->
-      <div class="gallery-card">
-        <div class="gallery-preview-box">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5">
-            <path d="M2 10s3-3 7-3 7 3 7 3"></path>
-            <circle cx="6" cy="15" r="4"></circle>
-            <circle cx="18" cy="15" r="4"></circle>
-          </svg>
-          <span class="drag-hint-badge">360 View Ready</span>
+      <!-- Card 4: Designer Chair -->
+      <div class="model-card-box">
+        <div class="card-viewer-wrap">
+          <model-viewer 
+            src="assets/chair.glb" 
+            alt="3D Designer Armchair" 
+            camera-controls 
+            auto-rotate 
+            shadow-intensity="1.5"
+            exposure="1.0"
+            environment-image="neutral">
+          </model-viewer>
+          <div class="orbit-guide" style="font-size: 0.6rem; padding: 0.2rem 0.5rem;">Drag to Orbit</div>
         </div>
-        <span class="category-badge">Eyewear & Accessories</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.35rem;">Polarized Classic Aviators</h3>
-        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
-          Real-time frame width measurement guide and face-depth simulation for Indian facial profiles.
+        <span class="card-tag">Furniture & Living</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.25rem;">Nordic Velvet Armchair</h3>
+        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;">
+          Micro-fiber velvet sheen shader with wood grain legs and WebXR spatial room placement.
         </p>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.85rem;">
-          <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-emerald);">+31% Add to Cart</span>
-          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Open 3D Model</a>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; font-size: 0.75rem;">
+          <span style="color: var(--accent-emerald); font-family: var(--font-mono);">-48% Sizing Disputes</span>
+          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Inspect in Studio</a>
         </div>
       </div>
 
-      <!-- Card 5 -->
-      <div class="gallery-card">
-        <div class="gallery-preview-box">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="1.5">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-          <span class="drag-hint-badge">360 View Ready</span>
+      <!-- Card 5: Cosmetic Glass Bottle -->
+      <div class="model-card-box">
+        <div class="card-viewer-wrap">
+          <model-viewer 
+            src="assets/bottle.glb" 
+            alt="3D Cosmetic Bottle" 
+            camera-controls 
+            auto-rotate 
+            shadow-intensity="1.5"
+            exposure="1.0"
+            environment-image="neutral">
+          </model-viewer>
+          <div class="orbit-guide" style="font-size: 0.6rem; padding: 0.2rem 0.5rem;">Drag to Orbit</div>
         </div>
-        <span class="category-badge">Traditional Jewelry</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.35rem;">22K Kundan Heritage Choker</h3>
-        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
-          Ultra-high-definition gemstone facet reflections and hallmarked gold luster simulation.
+        <span class="card-tag">Luxury Packaging</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.25rem;">Minimalist Hydration Flask</h3>
+        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;">
+          Semi-transparent frosted glass body with stainless steel seal cap and volumetric refraction.
         </p>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.85rem;">
-          <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-emerald);">+61% High-Ticket Sales</span>
-          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Open 3D Model</a>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; font-size: 0.75rem;">
+          <span style="color: var(--accent-emerald); font-family: var(--font-mono);">+36% Add-to-Cart</span>
+          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Inspect in Studio</a>
         </div>
       </div>
 
-      <!-- Card 6 -->
-      <div class="gallery-card">
-        <div class="gallery-preview-box">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5">
-            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-            <path d="M9 9h6v6H9z"></path>
-          </svg>
-          <span class="drag-hint-badge">360 View Ready</span>
+      <!-- Card 6: Cyber Damaged Helmet -->
+      <div class="model-card-box">
+        <div class="card-viewer-wrap">
+          <model-viewer 
+            src="assets/helmet.glb" 
+            alt="3D Damaged Battle Helmet" 
+            camera-controls 
+            auto-rotate 
+            shadow-intensity="1.5"
+            exposure="1.0"
+            environment-image="neutral">
+          </model-viewer>
+          <div class="orbit-guide" style="font-size: 0.6rem; padding: 0.2rem 0.5rem;">Drag to Orbit</div>
         </div>
-        <span class="category-badge">Home & Furniture</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.35rem;">Ergonomic Mesh Task Chair</h3>
-        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
-          Includes AR Room Placement for spatial sizing and lumbar support tilt visualization.
+        <span class="card-tag">Gaming & Collectibles</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.25rem;">Battle-Worn Aviator Helmet</h3>
+        <p style="font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;">
+          Official Khronos benchmark model featuring normal-map scratches, metallic patina, and visor glare.
         </p>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.85rem;">
-          <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-emerald);">-48% Size Disputes</span>
-          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Open 3D Model</a>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; font-size: 0.75rem;">
+          <span style="color: var(--accent-emerald); font-family: var(--font-mono);">Benchmark Quality</span>
+          <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">Inspect in Studio</a>
         </div>
       </div>
 
@@ -235,12 +265,11 @@
 
   <!-- Site Footer -->
   <footer class="site-footer">
-    <div class="container footer-bottom">
-      <div>DukaanSpatial Gallery. All products rendered using browser-native WebGL shaders.</div>
-      <div>Zero external 3D engine plugins or heavy app installations needed.</div>
+    <div class="container footer-copy">
+      <div>DukaanSpatial Live Gallery. All models rendered in browser-native WebGL2 via Google ModelViewer.</div>
+      <div>Designed for Indian merchants, D2C startups, and retail brands.</div>
     </div>
   </footer>
 
-  <script src="js/app.js"></script>
 </body>
 </html>

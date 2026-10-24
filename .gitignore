@@ -1,0 +1,9 @@
+# DukaanSpatial .gitignore
+blender_master_scenes/
+hdri_environments/
+pbr_textures_4k/
+media/*.mp4
+*.zip
+*.log
+.DS_Store
+Thumbs.db
