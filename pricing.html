@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans | DukaanSpatial</title>
+  <meta name="description" content="Simple, transparent SaaS pricing built for Indian retail merchants and emerging D2C brands. Start for free.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pricing-card.featured {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 35px rgba(34, 211, 238, 0.2);
+    }
+    .featured-tag {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+      color: #070913;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      padding: 0.25rem 0.85rem;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .price-num {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1rem 0 0.5rem;
+    }
+    .price-num span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      font-family: var(--font-sans);
+    }
+    .feature-list {
+      list-style: none;
+      margin: 1.75rem 0;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.5rem;
+    }
+    .feature-list li {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      padding-left: 1.4rem;
+      position: relative;
+      margin-bottom: 0.75rem;
+    }
+    .feature-list li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+    @media (max-width: 992px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          </svg>
+        </div>
+        <div class="brand-name">Dukaan<span>Spatial</span></div>
+        <span class="brand-badge">Pricing</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="studio.html" class="nav-link">3D Studio</a>
+        <a href="showcase.html" class="nav-link">Showcase</a>
+        <a href="pricing.html" class="nav-link active">Pricing</a>
+        <a href="about.html" class="nav-link">Founder Story</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="studio.html" class="btn btn-primary btn-sm">Start Free Trial</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="padding: 3rem 1.5rem 5rem;">
+    
+    <!-- Header -->
+    <div style="text-align: center; max-width: 650px; margin: 0 auto;">
+      <span class="status-pill" style="margin-bottom: 0.75rem;">
+        Transparent Bharat Pricing
+      </span>
+      <h1 style="font-family: var(--font-heading); font-size: 2.75rem; margin-top: 0.35rem;">
+        Affordable Spatial SaaS for Every Indian Seller
+      </h1>
+      <p style="color: var(--text-secondary); font-size: 1rem; margin-top: 0.5rem;">
+        No expensive agency retainers. No percentage commissions on your sales. Pay a flat monthly fee in INR via UPI.
+      </p>
+    </div>
+
+    <!-- Pricing Grid -->
+    <div class="pricing-grid">
+      
+      <!-- Tier 1: Free Starter -->
+      <div class="pricing-card">
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.4rem;">Starter Store</h3>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem;">
+            Ideal for testing 3D on your top 3 bestselling products.
+          </p>
+          <div class="price-num">INR 0 <span>/ forever</span></div>
+          <ul class="feature-list">
+            <li>Up to 3 Active 3D Product Embeds</li>
+            <li>1,000 3D Interactive Views / month</li>
+            <li>Standard 360 Orbit WebGL Viewer</li>
+            <li>Dukaan & Shopify 1-Line Embed Code</li>
+            <li>Standard Community Support</li>
+          </ul>
+        </div>
+        <a href="studio.html" class="btn btn-secondary" style="width: 100%;">
+          Start For Free
+        </a>
+      </div>
+
+      <!-- Tier 2: Growth Merchant (Featured) -->
+      <div class="pricing-card featured">
+        <span class="featured-tag">Most Popular in India</span>
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: #fff;">Growth Merchant</h3>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem;">
+            For scaling D2C brands, shoe stores, and electronics sellers.
+          </p>
+          <div class="price-num" style="color: var(--accent-cyan);">INR 499 <span>/ month</span></div>
+          <ul class="feature-list">
+            <li>Up to 25 Active 3D Product Embeds</li>
+            <li>25,000 3D Interactive Views / month</li>
+            <li>WebXR Augmented Reality (AR Room View)</li>
+            <li>Live Color & Finish Swatch Customizer</li>
+            <li>Remove DukaanSpatial Watermark</li>
+            <li>Interactive Feature Callout Annotation Pins</li>
+          </ul>
+        </div>
+        <a href="studio.html" class="btn btn-primary" style="width: 100%;">
+          Get Growth Plan
+        </a>
+      </div>
+
+      <!-- Tier 3: Pro Brand -->
+      <div class="pricing-card">
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.4rem;">Enterprise Brand</h3>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem;">
+            For established retail chains and multi-category catalogs.
+          </p>
+          <div class="price-num">INR 1,499 <span>/ month</span></div>
+          <ul class="feature-list">
+            <li>Unlimited Active 3D Product Embeds</li>
+            <li>150,000 3D Interactive Views / month</li>
+            <li>Custom Studio Lighting Environments</li>
+            <li>High-Poly GLTF/GLB Asset Imports</li>
+            <li>Dedicated WhatsApp Technical Support</li>
+            <li>Custom CSS Styling & White-Label Domain</li>
+          </ul>
+        </div>
+        <a href="studio.html" class="btn btn-secondary" style="width: 100%;">
+          Upgrade to Enterprise
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Shark Tank Unit Economics Note -->
+    <div style="margin-top: 4rem; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 2rem;">
+      <h4 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem;">SaaS Unit Economics & Defensibility</h4>
+      <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65;">
+        Because all 3D WebGL rendering happens client-side inside the user's browser, server hosting costs are strictly static asset delivery (CDN bandwidth). This produces an extraordinary <strong>88% gross profit margin</strong>, making DukaanSpatial instantly cash-flow positive with just 100 paying Indian merchants.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <div>DukaanSpatial Pricing. Powered by UPI auto-debit and Razorpay gateway.</div>
+      <div>Designed for Indian MSMEs, D2C startups, and retail entrepreneurs.</div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

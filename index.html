@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DukaanSpatial | India's First 1-Click Interactive 3D & AR Product Showcase Platform</title>
+  <meta name="description" content="Turn flat 2D product photos into interactive 360-degree 3D and Augmented Reality product showcases for your online store with 1 line of embed code. Boost conversions by 38%.">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div style="background: linear-gradient(90deg, rgba(34, 211, 238, 0.15), rgba(139, 92, 246, 0.2)); border-bottom: 1px solid var(--border-subtle); padding: 0.65rem 0; text-align: center; font-size: 0.8125rem; font-family: var(--font-mono); color: var(--accent-cyan);">
+    <span>ANNOUNCEMENT: DukaanSpatial WebGL 3D Engine v2.0 is now live for all Indian D2C brands & retail stores.</span>
+  </div>
+
+  <!-- Main Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <div class="brand-name">Dukaan<span>Spatial</span></div>
+        <span class="brand-badge">India's First</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="studio.html" class="nav-link">3D Studio</a>
+        <a href="showcase.html" class="nav-link">Showcase</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">Founder Story</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="studio.html" class="btn btn-secondary btn-sm">Try Live Demo</a>
+        <a href="studio.html" class="btn btn-primary btn-sm">Create 3D Model</a>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      
+      <!-- Left Copy Column -->
+      <div>
+        <div class="status-pill">
+          <span class="pulse-dot"></span>
+          Spatial E-Commerce Architecture
+        </div>
+        
+        <h1 class="hero-title">
+          Turn Flat 2D Photos Into <span class="text-gradient">Interactive 3D</span> Product Showcases
+        </h1>
+        
+        <p class="hero-desc">
+          Stop losing 30% of sales to customer hesitation and returns. DukaanSpatial gives every Indian merchant a lightweight 360-degree 3D viewer and Augmented Reality preview that embeds into any website with 1 line of code.
+        </p>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="studio.html" class="btn btn-primary">
+            <span>Launch 3D Studio</span>
+          </a>
+          <a href="#calculator-section" class="btn btn-secondary">
+            <span>Calculate Sales Lift</span>
+          </a>
+        </div>
+
+        <!-- Live Metrics Counter -->
+        <div class="hero-stats-row">
+          <div class="stat-item">
+            <div class="stat-num">+38%</div>
+            <div class="stat-label">Average Conversion Lift</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">-42%</div>
+            <div class="stat-label">Return Rate Reduction</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">0.4s</div>
+            <div class="stat-label">WebGL Mobile Load Time</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Live 3D Product Viewport -->
+      <div>
+        <div class="viewport-container">
+          <div class="viewport-header">
+            <div class="viewport-title-group">
+              <h3>Live Interactive 3D Model</h3>
+              <p>Drag to rotate in 360 degrees &bull; Select colors below</p>
+            </div>
+            
+            <!-- Product Switcher Tabs -->
+            <div class="product-selector-pill">
+              <button class="prod-tab-btn active" data-prod="sneaker">Sneaker</button>
+              <button class="prod-tab-btn" data-prod="watch">Watch</button>
+              <button class="prod-tab-btn" data-prod="headphones">Audio</button>
+            </div>
+          </div>
+
+          <!-- 3D Canvas Box -->
+          <div class="canvas-box-3d" id="canvas-box-3d">
+            <canvas id="webgl-canvas"></canvas>
+            <div class="drag-hint-badge">Drag with mouse or finger to inspect 360</div>
+          </div>
+
+          <!-- Material & Color Customizer Bar -->
+          <div class="customizer-bar">
+            <div class="color-swatches-group">
+              <span class="swatch-label">Live Finish:</span>
+              <div class="color-dot dot-cyan active" data-color="#22d3ee" title="Electric Cyan"></div>
+              <div class="color-dot dot-purple" data-color="#8b5cf6" title="Neon Violet"></div>
+              <div class="color-dot dot-black" data-color="#1e293b" title="Midnight Slate"></div>
+              <div class="color-dot dot-amber" data-color="#f59e0b" title="Sunset Amber"></div>
+              <div class="color-dot dot-white" data-color="#f8fafc" title="Pure White"></div>
+            </div>
+
+            <a href="studio.html" class="btn btn-secondary btn-sm" style="font-size: 0.75rem;">
+              <span>View in AR Mobile</span>
+            </a>
+          </div>
+
+          <!-- 1-Line Embed Code Snippet -->
+          <div class="embed-code-wrap">
+            <span class="embed-code-text" id="embed-snippet-text">
+              &lt;iframe src="https://dukaanspatial.in/view/sneaker?color=22d3ee" width="100%" height="450"&gt;&lt;/iframe&gt;
+            </span>
+            <button class="btn btn-primary btn-sm" id="copy-embed-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">
+              Copy 1-Line Code
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section: How It Works 3-Step Flow -->
+  <section class="section" style="background: rgba(17, 24, 44, 0.4); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-badge">Frictionless Workflow</span>
+        <h2 class="section-heading">From 2D Photo to Live 3D Model in 3 Steps</h2>
+        <p class="section-subtext">No 3D modeling skills, Blender software, or expensive graphic designers required. DukaanSpatial automates the spatial pipeline for Indian retail.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-badge">Step 01</span>
+          <h4>Upload Photos or 3D Asset</h4>
+          <p>Upload standard product images taken from 4 angles with your smartphone, or import ready GLTF/GLB 3D CAD files directly into our browser studio.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-badge">Step 02</span>
+          <h4>Customize Materials & Hotspots</h4>
+          <p>Configure material finishes (metallic, matte, leather, fabric), set custom color variants, and add interactive feature callout pins on key components.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-badge">Step 03</span>
+          <h4>Paste 1-Line Embed Code</h4>
+          <p>Copy our lightweight, responsive iframe embed code and paste it into Shopify, Dukaan, WooCommerce, WordPress, or custom HTML in 10 seconds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Interactive ROI Calculator -->
+  <section class="section" id="calculator-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-badge">Revenue Impact Calculator</span>
+        <h2 class="section-heading">Calculate Your Projected E-Commerce Growth</h2>
+        <p class="section-subtext">Based on aggregated conversion benchmarks across Indian footwear, electronics, jewelry, and fashion storefronts.</p>
+      </div>
+
+      <div class="roi-calculator-box">
+        <div class="roi-grid">
+          
+          <!-- Sliders Column -->
+          <div>
+            <div class="roi-slider-item">
+              <div class="roi-slider-header">
+                <span style="font-weight: 600;">Monthly Store Visitors:</span>
+                <strong id="calc-traffic-val" style="color: var(--accent-cyan); font-family: var(--font-mono);">15,000 visits</strong>
+              </div>
+              <input type="range" id="calc-traffic" min="1000" max="100000" step="1000" value="15000">
+            </div>
+
+            <div class="roi-slider-item">
+              <div class="roi-slider-header">
+                <span style="font-weight: 600;">Average Order Value (AOV):</span>
+                <strong id="calc-aov-val" style="color: var(--accent-cyan); font-family: var(--font-mono);">INR 2,200</strong>
+              </div>
+              <input type="range" id="calc-aov" min="500" max="15000" step="100" value="2200">
+            </div>
+
+            <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; margin-top: 1.5rem;">
+              Calculated using standard 38% conversion increase from interactive spatial inspection and 42% reduction in sizing/fit return disputes.
+            </p>
+          </div>
+
+          <!-- Result Display Box -->
+          <div class="roi-metrics-display">
+            <span style="font-size: 0.75rem; font-family: var(--font-mono); text-transform: uppercase; color: var(--text-muted);">
+              Estimated Additional Monthly Sales
+            </span>
+            <div class="roi-big-num" id="calc-revenue-output">+ INR 2,31,000</div>
+            <div style="font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent-emerald); font-weight: 700; margin-bottom: 1.25rem;" id="calc-returns-output">
+              INR 27,720 Saved in Returns
+            </div>
+            <a href="studio.html" class="btn btn-primary" style="width: 100%;">
+              Upgrade Your Store to 3D Today
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </div>
+            <div class="brand-name">Dukaan<span>Spatial</span></div>
+          </a>
+          <p>India's first 1-click interactive 3D and Augmented Reality product showcase platform, designed to empower Bharat's 1 million+ online brands and local merchants.</p>
+          <div style="margin-top: 1rem; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-muted);">
+            Engine v2.0-WebGL &bull; Built by Sabhyam Trivedi
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Platform</h5>
+          <ul>
+            <li><a href="studio.html">3D Creator Studio</a></li>
+            <li><a href="showcase.html">Product Showcase</a></li>
+            <li><a href="pricing.html">Pricing Plans</a></li>
+            <li><a href="about.html">Founder Vision</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>E-Commerce Integrations</h5>
+          <ul>
+            <li><a href="studio.html">Shopify 3D Embed</a></li>
+            <li><a href="studio.html">Dukaan Store Plugin</a></li>
+            <li><a href="studio.html">WooCommerce Integration</a></li>
+            <li><a href="studio.html">Custom HTML / React SDK</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Performance Standards</h5>
+          <ul>
+            <li><span style="color: var(--accent-emerald); font-size: 0.8125rem;">&bull; 60 FPS Smooth WebGL</span></li>
+            <li><span style="color: var(--text-muted); font-size: 0.8125rem;">Mobile Safari & Chrome Ready</span></li>
+            <li><span style="color: var(--text-muted); font-size: 0.8125rem;">Sub-500ms Asset Load</span></li>
+            <li><span style="color: var(--accent-cyan); font-size: 0.8125rem;">No App Downloads Needed</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>DukaanSpatial India. All rights reserved. Built for Shark Tank India Young Founders Track.</div>
+        <div>Democratizing spatial computing for Indian small business.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
